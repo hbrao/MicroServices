@@ -8,8 +8,10 @@
         <outputRelativeToContentRoot value="true" />
         <module name="caching" />
         <module name="streaming" />
-        <module name="reactive" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="reactive" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
