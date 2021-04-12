@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="caching" />
         <module name="streaming" />
+        <module name="reactive" />
       </profile>
     </annotationProcessing>
   </component>

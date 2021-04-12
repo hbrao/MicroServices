@@ -11,6 +11,7 @@
     <modules>
         <module>caching</module>
         <module>streaming</module>
+        <module>reactive</module>
     </modules>
 
     <properties>
