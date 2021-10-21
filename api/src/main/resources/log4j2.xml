@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration packages="oracle.spectra.logging.base" status="WARN" monitorInterval="30" shutdownHook="disable">
+    <Appenders>
+        <Console name="JSONLogConsoleAppender" target="SYSTEM_OUT">
+            <SpectraJsonLayout compact="true" eventEol="true"/>
+        </Console>
+        <Async name="AsyncCAppender" bufferSize="256">
+            <AppenderRef ref="JSONLogConsoleAppender"/>
+        </Async>
+    </Appenders>
+    <Loggers>
+        <Root level="${sys:spectra-log-level:-ERROR}">
+            <AppenderRef ref="AsyncCAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>

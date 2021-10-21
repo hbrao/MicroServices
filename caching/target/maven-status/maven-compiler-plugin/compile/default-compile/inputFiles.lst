@@ -14,5 +14,6 @@
 /Users/hbrao/Documents/GitHub/MicroServices/caching/src/main/java/ignite/DataWriter.java
 /Users/hbrao/Documents/GitHub/MicroServices/caching/src/main/java/ignite/NearTest.java
 /Users/hbrao/Documents/GitHub/MicroServices/caching/src/main/java/datacollisions/DataColllisionCalc.java
+/Users/hbrao/Documents/GitHub/MicroServices/caching/src/main/java/IgniteCustomerInfoService.java
 /Users/hbrao/Documents/GitHub/MicroServices/caching/src/main/java/hazelcast/AddProduct.java
 /Users/hbrao/Documents/GitHub/MicroServices/caching/src/main/java/hazelcast/UpdateNameRequest.java

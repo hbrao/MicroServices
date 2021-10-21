@@ -8,14 +8,114 @@
     <artifactId>MicroServices</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
         <module>caching</module>
         <module>streaming</module>
-        <module>reactive</module>
+        <module>api</module>
     </modules>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+
+        <!-- Spectra Libraries -->
+        <ramplcore.bom.version>2201.0.4</ramplcore.bom.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>oracle.spectra</groupId>
+                <artifactId>ramplcore-bom</artifactId>
+                <version>${ramplcore.bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>fa-spectra-tpp-release-maven-local</id>
+            <url>https://artifactory.oci.oraclecorp.com/fa-spectra-tpp-release-maven-local</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>fa-spectra-4pp-release-maven-local</id>
+            <url>https://artifactory.oci.oraclecorp.com/fa-spectra-4pp-release-maven-local</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>fa-spectra-tpp-internal-release-maven-local</id>
+            <url>https://artifactory.oci.oraclecorp.com/fa-spectra-tpp-internal-release-maven-local</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>fa-spectra-lib-release-maven-local</id>
+            <url>https://artifactory.oci.oraclecorp.com/fa-spectra-lib-release-maven-local</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>fa-spectra-lib-snapshot-maven-local</id>
+            <url>https://artifactory.oci.oraclecorp.com/fa-spectra-lib-snapshot-maven-local</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>rwd-maven-virtual</id>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <name>Spectra platform redwood components Repository</name>
+            <url>https://artifacthub-phx.oci.oraclecorp.com/rwd-maven-virtual</url>
+        </repository>
+        <repository>
+            <id>fmw-virtual</id>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <url>https://artifacthub-phx.oci.oraclecorp.com/fmw-virtual</url>
+        </repository>
+    </repositories>
 </project>

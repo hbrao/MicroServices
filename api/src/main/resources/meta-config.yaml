@@ -1,0 +1,14 @@
+sources:
+  - type: "environment-variables"
+  - type: "system-properties"
+  - type: "file"
+    properties:
+      path: "/etc/config/global-config.properties"
+      optional: true
+  - type: "file"
+    properties:
+      path: "/etc/config/microprofile-config.properties"
+      optional: true
+  - type: "classpath"
+    properties:
+      resource: "META-INF/microprofile-config.properties"

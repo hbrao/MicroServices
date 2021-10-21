@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>MicroServices</artifactId>
+        <groupId>org.example</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>api</artifactId>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+
+        <package>com.oracle.osc.service</package>
+
+        <version.app.plugin.dependency>3.1.2</version.app.plugin.dependency>
+
+        <version.app.plugin.jar>3.0.2</version.app.plugin.jar>
+        <libs.classpath.prefix>libs</libs.classpath.prefix>
+        <mainClass>com.oracle.osc.service.Main</mainClass>
+
+        <version.lib.app.spectra-fa-instance-url-provider>2110.0.2</version.lib.app.spectra-fa-instance-url-provider>
+
+        <version.lib.app.orai18n-adf-api>1.0.0-200702</version.lib.app.orai18n-adf-api>
+
+        <version.lib.app.appache.httpClient>4.5.13</version.lib.app.appache.httpClient>
+        <version.lib.app.es-rhl-client-jackson.dataformat>2.8.11</version.lib.app.es-rhl-client-jackson.dataformat>
+        <version.lib.app.es-rhl-client-jackson-dataformat-cbor>2.11.1</version.lib.app.es-rhl-client-jackson-dataformat-cbor>
+    </properties>
+
+    <dependencies>
+        <!-- Helidon -->
+        <!-- Server -->
+        <dependency>
+            <groupId>io.helidon.microprofile.server</groupId>
+            <artifactId>helidon-microprofile-server</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-jdk14</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.helidon.microprofile.config</groupId>
+            <artifactId>helidon-microprofile-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.helidon.microprofile.cdi</groupId>
+            <artifactId>helidon-microprofile-cdi</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-jdk14</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Monitoring -->
+        <dependency>
+            <groupId>io.helidon.microprofile.health</groupId>
+            <artifactId>helidon-microprofile-health</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.helidon.microprofile.metrics</groupId>
+            <artifactId>helidon-microprofile-metrics</artifactId>
+        </dependency>
+
+        <!-- Security -->
+        <dependency>
+            <groupId>io.helidon.microprofile.jwt</groupId>
+            <artifactId>helidon-microprofile-jwt-auth</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.helidon.bundles</groupId>
+                    <artifactId>helidon-bundles-security</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.helidon.security.integration</groupId>
+                    <artifactId>helidon-security-integration-jersey-client</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.helidon.security.providers</groupId>
+            <artifactId>helidon-security-providers-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.helidon.security.providers</groupId>
+            <artifactId>helidon-security-providers-jwt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.helidon.security.providers</groupId>
+            <artifactId>helidon-security-providers-abac</artifactId>
+        </dependency>
+
+        <!-- Other -->
+        <dependency>
+            <groupId>io.helidon.microprofile.rest-client</groupId>
+            <artifactId>helidon-microprofile-rest-client</artifactId>
+        </dependency>
+
+        <!-- Spectra -->
+        <!-- Universal Connection Protocol -->
+        <dependency>
+            <groupId>oracle.spectra.connectors</groupId>
+            <artifactId>ucp</artifactId>
+        </dependency>
+
+        <!-- AuthZ AuthN -->
+        <dependency>
+            <groupId>oracle.spectra.security</groupId>
+            <artifactId>authorization-sdk</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>oracle.spectra.providers.helidon</groupId>
+            <artifactId>helidon-security-provider</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.oracle.fa.spectra</groupId>
+            <artifactId>spectra-fa-instance-url-provider</artifactId>
+            <version>${version.lib.app.spectra-fa-instance-url-provider}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>oracle.topologyManager</groupId>
+                    <artifactId>tm-java-client-sdk</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Other -->
+        <dependency>
+            <groupId>oracle.spectra.providers</groupId>
+            <artifactId>config-helidon-mp-provider</artifactId>
+        </dependency>
+
+        <!-- ApplCore  -->
+        <dependency>
+            <groupId>oracle.spectra.applcore</groupId>
+            <artifactId>context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>oracle.spectra.applcore</groupId>
+            <artifactId>datasecurity</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.helidon.tracing</groupId>
+                    <artifactId>helidon-tracing-jaeger</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>oracle.spectra.applcore</groupId>
+            <artifactId>cors</artifactId>
+        </dependency>
+
+        <!-- AccessGroup -->
+        <dependency>
+            <groupId>com.oracle.osc</groupId>
+            <artifactId>accessgroup-security</artifactId>
+            <version>22.01.5-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Resource bundle dependencies -->
+        <dependency>
+            <artifactId>orai18n-adf-api</artifactId>
+            <groupId>com.oracle.nlsgdk</groupId>
+            <version>${version.lib.app.orai18n-adf-api}</version>
+        </dependency>
+        <dependency>
+            <artifactId>icu4j</artifactId>
+            <groupId>com.ibm.icu</groupId>
+        </dependency>
+        <dependency>
+            <artifactId>orai18n-service-api</artifactId>
+            <groupId>com.oracle.nlsgdk</groupId>
+        </dependency>
+
+        <!-- Other -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${version.lib.app.appache.httpClient}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-smile</artifactId>
+            <version>${version.lib.app.es-rhl-client-jackson.dataformat}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-cbor</artifactId>
+            <version>${version.lib.app.es-rhl-client-jackson-dataformat-cbor}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${version.app.plugin.dependency}</version>
+                <executions>
+                    <execution>
+                        <id>copy-libs</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/libs</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                            <includeScope>runtime</includeScope>
+                            <excludeScope>test</excludeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>${version.app.plugin.jar}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>${libs.classpath.prefix}</classpathPrefix>
+                            <mainClass>${mainClass}</mainClass>
+                            <useUniqueVersions>false</useUniqueVersions>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
