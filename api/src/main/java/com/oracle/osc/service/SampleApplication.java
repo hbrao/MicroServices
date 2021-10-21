@@ -1,7 +1,6 @@
 package com.oracle.osc.service;
 
 import oracle.spectra.context.ApplContextJerseyFilter;
-import oracle.spectra.filter.SpectraCorsFilter;
 import oracle.ucp.jdbc.PoolDataSource;
 
 import javax.annotation.Priority;
