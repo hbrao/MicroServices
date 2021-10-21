@@ -14,7 +14,6 @@ public interface FAIdcsRestApi {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/token")
     JsonObject getToken(
-            /* @NotNull @HeaderParam("X-USER-IDENTITY-DOMAIN-NAME") String identityDomainName, */
             @NotNull @HeaderParam("Authorization") String authorization,
             @NotNull @RequestBody String body
     );
