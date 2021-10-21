@@ -14,6 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Base64;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -43,47 +44,61 @@ public class Utils {
         java.nio.file.Path authRespFile = fs.getPath("src", "test", "resources", "oauth_response.json");
         ObjectMapper mapper = new ObjectMapper();
 
-        if( Files.exists(authRespFile) ) {
-            try {
+        try {
+            if( Files.exists(authRespFile) && ! isExpiredToken(authRespFile, mapper.readValue(authRespFile.toFile(), OAuthResponse.class)) ) {
                 System.out.println("Fetching auth token from file ..... ");
                 OAuthResponse prevResp = mapper.readValue(authRespFile.toFile(), OAuthResponse.class);
                 token = prevResp.getAccess_token();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            try {
-                System.out.println("Fetching auth token from IDCS ..... ");
-                FAIdcsRestApi idcsRestClient = RestClientBuilder
-                        .newBuilder()
-                        .baseUri(URI.create("https://oauthserver/"))
-                        .connectTimeout(1, TimeUnit.MINUTES)
-                        .build(FAIdcsRestApi.class);
+            } else {
+                try {
+                    System.out.println("Fetching auth token from IDCS ..... ");
+                    FAIdcsRestApi idcsRestClient = RestClientBuilder
+                            .newBuilder()
+                            .baseUri(URI.create("https://oauthserver/"))
+                            .connectTimeout(1, TimeUnit.MINUTES)
+                            .build(FAIdcsRestApi.class);
 
-                JsonObject respObj = idcsRestClient.getToken(
-                        "Basic " + Base64.getEncoder().encodeToString(("client_id:secret").getBytes(StandardCharsets.UTF_8)),
-                        "grant_type=password&username=uname&password=pwd&scope=some:value/"
-                );
-
-                if (respObj != null && respObj.getString("access_token") != null) {
-                    token = respObj.getString("access_token");
-                    System.out.println("Obtained access token " + token);
-                    mapper.writeValue(authRespFile.toFile(), new OAuthResponse( respObj.getString("access_token"),
-                                                                                respObj.getString("token_type"),
-                                                                                respObj.getJsonNumber("expires_in").toString()
-                                                             )
+                    JsonObject respObj = idcsRestClient.getToken(
+                            "Basic " + Base64.getEncoder().encodeToString(("client_id:secret").getBytes(StandardCharsets.UTF_8)),
+                            "grant_type=password&username=uname&password=pwd&scope=some:value/"
                     );
+
+                    if (respObj != null && respObj.getString("access_token") != null) {
+                        token = respObj.getString("access_token");
+                        System.out.println("Obtained access token " + token);
+                        mapper.writeValue(authRespFile.toFile(), new OAuthResponse( respObj.getString("access_token"),
+                                                                                    respObj.getString("token_type"),
+                                                                                    respObj.getJsonNumber("expires_in").toString()
+                                                                 )
+                        );
+                    }
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                } catch (RestClientDefinitionException e) {
+                    e.printStackTrace();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-            } catch (RestClientDefinitionException e) {
-                e.printStackTrace();
-            } catch (Exception ex) {
-                ex.printStackTrace();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         return token;
+    }
+
+    public static Boolean isExpiredToken(java.nio.file.Path authRespFile, OAuthResponse authResponse) {
+        try {
+            BasicFileAttributes attributes = Files.readAttributes(authRespFile, BasicFileAttributes.class);
+            Long tokenValidUntil = attributes.lastModifiedTime().toMillis()
+                    + TimeUnit.SECONDS.toMillis(Long.parseLong(authResponse.getExpires_in()));
+            Long currentTime = System.currentTimeMillis() ;
+
+            return tokenValidUntil < currentTime ;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public static class OAuthResponse {
