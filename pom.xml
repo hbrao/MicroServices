@@ -19,7 +19,6 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
 
-        <!-- Spectra Libraries -->
         <ramplcore.bom.version>2201.0.4</ramplcore.bom.version>
     </properties>
 
