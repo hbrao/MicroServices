@@ -17,13 +17,11 @@
         <maven.compiler.target>11</maven.compiler.target>
 
         <package>com.oracle.osc.service</package>
-
         <libs.classpath.prefix>libs</libs.classpath.prefix>
+        <mainClass>com.oracle.osc.service.Main</mainClass>
 
         <version.app.plugin.dependency>3.1.2</version.app.plugin.dependency>
         <version.app.plugin.jar>3.0.2</version.app.plugin.jar>
-
-        <mainClass>com.oracle.osc.service.Main</mainClass>
 
         <version.lib.app.appache.httpClient>4.5.13</version.lib.app.appache.httpClient>
         <version.lib.app.es-rhl-client-jackson.dataformat>2.8.11</version.lib.app.es-rhl-client-jackson.dataformat>
