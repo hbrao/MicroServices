@@ -26,6 +26,6 @@ public interface FARestApi {
     JsonObject getLeadById(@PathParam("id") String id);
 
     default String getAuthorization() {
-        return "Basic " + Base64.getEncoder().encodeToString(("username:password").getBytes(StandardCharsets.UTF_8));
+        return "Basic " + Base64.getEncoder().encodeToString(("sranard:Welcome1").getBytes(StandardCharsets.UTF_8));
     }
 }
