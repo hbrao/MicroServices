@@ -1,4 +1,4 @@
-package com.oracle.osc.service;
+package com.oracle.osc.service.resources;
 
 import javax.enterprise.context.RequestScoped;
 import javax.json.JsonObject;
@@ -12,12 +12,13 @@ import java.util.Map;
 import com.oracle.osc.datasecurity.AccessGroupSecurityService;
 import com.oracle.osc.datasecurity.impl.ApplcoreDataSecurityServiceImpl;
 import com.oracle.osc.datasecurity.request.DataSecurityRequest;
+import com.oracle.osc.service.util.Utils;
 import io.helidon.security.annotations.Authenticated;
 import io.helidon.security.annotations.Authorized;
 import oracle.spectra.providers.security.helidon.annotations.AuthenticationRoleMapper;
 import oracle.spectra.providers.security.helidon.annotations.AuthorizationResourcePermission;
 
-@Path("/crmRestApi/resources/latest/feeds")
+@Path("/crmRestApi/resources/11.13.18.05/feeds")
 @RequestScoped
 public class SampleResource {
 

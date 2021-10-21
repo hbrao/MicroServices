@@ -1,5 +1,6 @@
 package com.oracle.osc.service;
 
+import com.oracle.osc.service.resources.SampleResource;
 import oracle.spectra.context.ApplContextJerseyFilter;
 import oracle.ucp.jdbc.PoolDataSource;
 
