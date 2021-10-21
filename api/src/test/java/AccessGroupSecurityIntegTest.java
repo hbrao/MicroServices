@@ -3,6 +3,7 @@ import com.oracle.osc.client.impl.RestClientImpl;
 import com.oracle.osc.client.FARestApi;
 import com.oracle.osc.service.util.Utils;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import javax.json.JsonObject;
@@ -12,8 +13,8 @@ import java.util.Map;
 
 public class AccessGroupSecurityIntegTest {
 
-    @Test
-    public void testGetOAuthToken() {
+    @BeforeAll
+    public static void testGetOAuthToken() {
         Assertions.assertNotNull(Utils.getOAuthToken());
     }
 

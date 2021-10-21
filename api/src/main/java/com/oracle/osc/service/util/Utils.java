@@ -60,15 +60,19 @@ public class Utils {
                         .connectTimeout(1, TimeUnit.MINUTES)
                         .build(FAIdcsRestApi.class);
 
-                JsonObject tokenResponse = idcsRestClient.getToken(
+                JsonObject respObj = idcsRestClient.getToken(
                         "Basic " + Base64.getEncoder().encodeToString(("client_id:secret").getBytes(StandardCharsets.UTF_8)),
                         "grant_type=password&username=uname&password=pwd&scope=some:value/"
                 );
 
-                if (tokenResponse != null && tokenResponse.getString("access_token") != null) {
-                    token = tokenResponse.getString("access_token");
+                if (respObj != null && respObj.getString("access_token") != null) {
+                    token = respObj.getString("access_token");
                     System.out.println("Obtained access token " + token);
-                    mapper.writeValue(authRespFile.toFile(), tokenResponse);
+                    mapper.writeValue(authRespFile.toFile(), new OAuthResponse( respObj.getString("access_token"),
+                                                                                respObj.getString("token_type"),
+                                                                                respObj.getJsonNumber("expires_in").toString()
+                                                             )
+                    );
                 }
             } catch (IllegalStateException e) {
                 e.printStackTrace();
@@ -86,6 +90,15 @@ public class Utils {
         String access_token;
         String token_type;
         String expires_in;
+
+        public OAuthResponse() {
+        }
+
+        public OAuthResponse(String access_token, String token_type, String expires_in) {
+            this.access_token = access_token;
+            this.token_type = token_type;
+            this.expires_in = expires_in;
+        }
 
         public String getAccess_token() {
             return access_token;
