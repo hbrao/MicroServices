@@ -4,13 +4,14 @@ import com.oracle.osc.client.FARestApi;
 import com.oracle.osc.service.util.Utils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import javax.json.JsonObject;
 import javax.ws.rs.core.Response;
 import java.util.Map;
 
-
+@Disabled
 public class AccessGroupSecurityIntegTest {
 
     @BeforeAll

@@ -10,7 +10,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>api</artifactId>
+    <artifactId>helidon</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -35,12 +35,6 @@
         <dependency>
             <groupId>io.helidon.microprofile.server</groupId>
             <artifactId>helidon-microprofile-server</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-jdk14</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>io.helidon.microprofile.config</groupId>
@@ -49,12 +43,6 @@
         <dependency>
             <groupId>io.helidon.microprofile.cdi</groupId>
             <artifactId>helidon-microprofile-cdi</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-jdk14</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <!-- Monitoring -->
@@ -67,75 +55,23 @@
             <artifactId>helidon-microprofile-metrics</artifactId>
         </dependency>
 
-        <!-- Security -->
-        <dependency>
-            <groupId>io.helidon.microprofile.jwt</groupId>
-            <artifactId>helidon-microprofile-jwt-auth</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.helidon.bundles</groupId>
-                    <artifactId>helidon-bundles-security</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>io.helidon.security.integration</groupId>
-                    <artifactId>helidon-security-integration-jersey-client</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- Other -->
+        <!-- Rest client -->
         <dependency>
             <groupId>io.helidon.microprofile.rest-client</groupId>
             <artifactId>helidon-microprofile-rest-client</artifactId>
         </dependency>
 
-        <!-- Spectra -->
-        <!-- Universal Connection Protocol -->
-        <dependency>
-            <groupId>oracle.spectra.connectors</groupId>
-            <artifactId>ucp</artifactId>
-        </dependency>
-
-        <!-- Authorization Provider -->
-        <dependency>
-            <groupId>oracle.spectra.security</groupId>
-            <artifactId>authorization-sdk</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>oracle.spectra.providers.helidon</groupId>
-            <artifactId>helidon-security-provider</artifactId>
-        </dependency>
-
         <!-- Other -->
         <dependency>
-            <groupId>oracle.spectra.providers</groupId>
-            <artifactId>config-helidon-mp-provider</artifactId>
-        </dependency>
-
-        <!-- ApplCore  -->
-        <dependency>
-            <groupId>oracle.spectra.applcore</groupId>
-            <artifactId>context</artifactId>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.11.0</version>
         </dependency>
         <dependency>
-            <groupId>oracle.spectra.applcore</groupId>
-            <artifactId>datasecurity</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.helidon.tracing</groupId>
-                    <artifactId>helidon-tracing-jaeger</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.11.0</version>
         </dependency>
-
-        <!-- AccessGroup -->
-        <dependency>
-            <groupId>com.oracle.osc</groupId>
-            <artifactId>accessgroup-security</artifactId>
-            <version>22.01.5-SNAPSHOT</version>
-        </dependency>
-
-        <!-- Other -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
@@ -167,6 +103,17 @@
 
     <build>
         <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.21.0</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-surefire-provider</artifactId>
+                        <version>1.2.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>

@@ -6,11 +6,6 @@ import io.helidon.config.ConfigSources;
 import io.helidon.config.MetaConfig;
 import io.helidon.config.spi.ConfigSource;
 import io.helidon.microprofile.server.Server;
-import oracle.jbo.server.DataSourceContextFactory;
-import oracle.spectra.connectors.ucp.PoolDataSourceFactory;
-import oracle.spectra.logging.SpectraLoggerSupport;
-
-import javax.naming.Context;
 import java.util.function.Supplier;
 
 import static io.helidon.config.ConfigSources.classpath;
@@ -27,13 +22,12 @@ public final class Main {
      */
     public static void main(final String[] args) {
 
-        // load logging configuration
-        SpectraLoggerSupport.setup();
         Config config = buildHelidonConfig();
         registerDataSources();
         Server server = startServer(config);
         System.out.println("Started server on http://" + server.host() + ":" + server.port());
     }
+
 
     /**
      * Start the server.
@@ -70,8 +64,5 @@ public final class Main {
 
     private static void registerDataSources() {
         System.out.println("Registering data sources ....");
-        System.setProperty(Context.INITIAL_CONTEXT_FACTORY, "oracle.spectra.connectors.ucp.naming.DataSourceContextFactory");
-        System.setProperty("jbo.datasource_naming_factory", DataSourceContextFactory.class.getName());
-        PoolDataSourceFactory.initDataSources();
     }
 }

@@ -1,7 +1,5 @@
 package com.oracle.osc.service.oauth;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-
 import javax.json.JsonObject;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
@@ -15,6 +13,6 @@ public interface FAIdcsRestApi {
     @Path("/token")
     JsonObject getToken(
             @NotNull @HeaderParam("Authorization") String authorization,
-            @NotNull @RequestBody String body
+            @NotNull String body
     );
 }
