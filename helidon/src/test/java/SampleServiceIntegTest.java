@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 import java.util.Map;
 
 @Disabled
-public class AccessGroupSecurityIntegTest {
+public class SampleServiceIntegTest {
 
     @BeforeAll
     public static void testGetOAuthToken() {
