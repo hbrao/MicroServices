@@ -151,7 +151,6 @@
             <artifactId>jackson-dataformat-cbor</artifactId>
             <version>${version.lib.app.es-rhl-client-jackson-dataformat-cbor}</version>
         </dependency>
-
         <dependency>
             <artifactId>junit-jupiter-api</artifactId>
             <groupId>org.junit.jupiter</groupId>
