@@ -9,6 +9,7 @@ public class Common {
 
 	private static Properties createBaseProperties() throws Exception {
 		Properties props = new Properties();
+		//TODO Point to the correct kafka server
 		props.put("bootstrap.servers", "localhost:9092");
 		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");

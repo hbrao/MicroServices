@@ -1,6 +1,6 @@
 package com.oracle.osc.service;
 
-import com.oracle.osc.service.resources.SampleResource;
+import com.oracle.osc.service.resources.RestService;
 
 import javax.annotation.Priority;
 import javax.enterprise.context.ApplicationScoped;
@@ -13,12 +13,12 @@ import java.util.Set;
 
 @ApplicationScoped
 @ApplicationPath("/")
-public class SampleApplication extends Application {
+public class HelidonApplication extends Application {
 
 
     @Override
     public Set<Class<?>> getClasses() {
-        return Set.of(SampleResource.class);
+        return Set.of(RestService.class);
     }
 
     public void init(@Observes @Priority(Interceptor.Priority.APPLICATION) @Initialized(ApplicationScoped.class) Object init) {

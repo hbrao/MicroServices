@@ -1,7 +1,7 @@
 package com.oracle.osc.service.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.oracle.osc.service.oauth.FAIdcsRestApi;
+import com.oracle.osc.client.OAuthClient;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 import org.eclipse.microprofile.rest.client.RestClientDefinitionException;
 
@@ -52,11 +52,12 @@ public class Utils {
             } else {
                 try {
                     System.out.println("Fetching auth token from IDCS ..... ");
-                    FAIdcsRestApi idcsRestClient = RestClientBuilder
+                    OAuthClient idcsRestClient = RestClientBuilder
                             .newBuilder()
+                            //TODO Point to the OAuth server
                             .baseUri(URI.create("https://oauthserver/"))
                             .connectTimeout(1, TimeUnit.MINUTES)
-                            .build(FAIdcsRestApi.class);
+                            .build(OAuthClient.class);
 
                     JsonObject respObj = idcsRestClient.getToken(
                             "Basic " + Base64.getEncoder().encodeToString(("client_id:secret").getBytes(StandardCharsets.UTF_8)),

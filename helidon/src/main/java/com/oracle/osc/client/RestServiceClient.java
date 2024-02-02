@@ -13,7 +13,7 @@ import java.util.Base64;
 
 @Path("")
 @ClientHeaderParam(name = "Authorization", value = "{getAuthorization}")
-public interface FARestApi {
+public interface RestServiceClient {
 
     @POST
     @Path("/leads")
@@ -24,6 +24,11 @@ public interface FARestApi {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/leads/{id}")
     JsonObject getLeadById(@PathParam("id") String id);
+
+    @GET
+    @Path("/{object}/{objectId}/history")
+    @Produces(MediaType.APPLICATION_JSON)
+    JsonObject getHistory(@PathParam("object") String object, @PathParam("objectId") String objectId);
 
     default String getAuthorization() {
         return "Basic " + Base64.getEncoder().encodeToString(("username:password").getBytes(StandardCharsets.UTF_8));
