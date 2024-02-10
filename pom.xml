@@ -12,7 +12,7 @@
     <modules>
         <module>caching</module>
         <module>streaming</module>
-        <module>helidon</module>
+        <module>restapi</module>
     </modules>
 
     <properties>

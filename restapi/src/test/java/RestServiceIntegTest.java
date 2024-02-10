@@ -2,7 +2,6 @@ import com.oracle.osc.client.impl.RestServiceClientImpl;
 import com.oracle.osc.client.RestServiceClient;
 import com.oracle.osc.service.util.Utils;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +10,7 @@ import javax.ws.rs.core.Response;
 import java.util.Map;
 
 @Disabled
-public class SampleServiceIntegTest {
+public class RestServiceIntegTest {
 
     public static void testGetOAuthToken() {
         Assertions.assertNotNull(Utils.getOAuthToken());
