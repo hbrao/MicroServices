@@ -1,6 +1,6 @@
 package com.example.api.app;
 
-import com.example.api.dispatcher.LeadsDispatcher;
+import com.example.api.dispatcher.LeadDispatcher;
 
 import javax.annotation.Priority;
 import javax.enterprise.context.ApplicationScoped;
@@ -18,7 +18,7 @@ public class HelidonApplication extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {
-        return Set.of(LeadsDispatcher.class);
+        return Set.of(LeadDispatcher.class);
     }
 
     public void init(@Observes @Priority(Interceptor.Priority.APPLICATION) @Initialized(ApplicationScoped.class) Object init) {

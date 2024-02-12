@@ -13,7 +13,7 @@ import jdk.jshell.spi.ExecutionControl.NotImplementedException;
 
 @Path("")
 @RequestScoped
-public class LeadsDispatcher {
+public class LeadDispatcher {
 
     @GET
     @Path("/leads/{id}")
