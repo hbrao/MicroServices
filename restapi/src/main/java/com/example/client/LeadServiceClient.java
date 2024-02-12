@@ -1,4 +1,4 @@
-package com.oracle.osc.client;
+package com.example.client;
 
 import javax.json.JsonObject;
 
@@ -13,7 +13,7 @@ import java.util.Base64;
 
 @Path("")
 @ClientHeaderParam(name = "Authorization", value = "{getAuthorization}")
-public interface RestServiceClient {
+public interface LeadServiceClient {
 
     @POST
     @Path("/leads")

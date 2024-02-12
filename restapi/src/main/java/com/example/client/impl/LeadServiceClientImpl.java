@@ -1,8 +1,6 @@
-package com.oracle.osc.client.impl;
+package com.example.client.impl;
 
-import com.oracle.osc.client.RestServiceClient;
-import org.eclipse.microprofile.config.Config;
-import org.eclipse.microprofile.config.ConfigProvider;
+import com.example.client.LeadServiceClient;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 
 import javax.json.JsonObject;
@@ -10,11 +8,11 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.concurrent.TimeUnit;
 
-public class RestServiceClientImpl implements RestServiceClient {
+public class LeadServiceClientImpl implements LeadServiceClient {
 
-    private RestServiceClient restClientServiceClient;
+    private LeadServiceClient restClientServiceClient;
 
-    public RestServiceClient getRestApiClient() {
+    public LeadServiceClient getRestApiClient() {
         if( restClientServiceClient == null ) createRestApiClient();
         return restClientServiceClient;
     }
@@ -25,7 +23,7 @@ public class RestServiceClientImpl implements RestServiceClient {
                                          .baseUri(URI.create("http://localhost:8081"))
                                          .connectTimeout(5, TimeUnit.SECONDS)
                                          .readTimeout(1, TimeUnit.MINUTES)
-                                         .build(RestServiceClient.class);
+                                         .build(LeadServiceClient.class);
         }
     }
 

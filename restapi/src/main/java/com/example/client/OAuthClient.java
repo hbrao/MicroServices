@@ -1,4 +1,4 @@
-package com.oracle.osc.client;
+package com.example.client;
 
 import javax.json.JsonObject;
 import javax.validation.constraints.NotNull;

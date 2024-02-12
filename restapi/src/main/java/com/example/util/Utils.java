@@ -1,7 +1,7 @@
-package com.oracle.osc.service.util;
+package com.example.util;
 
+import com.example.client.OAuthClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.oracle.osc.client.OAuthClient;
 import org.eclipse.microprofile.rest.client.RestClientBuilder;
 import org.eclipse.microprofile.rest.client.RestClientDefinitionException;
 

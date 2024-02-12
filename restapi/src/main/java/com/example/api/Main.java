@@ -1,4 +1,4 @@
-package com.oracle.osc.service;
+package com.example.api;
 
 
 import io.helidon.config.Config;
