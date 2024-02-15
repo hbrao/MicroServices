@@ -10,14 +10,18 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.*;
 
 import jdk.jshell.spi.ExecutionControl.NotImplementedException;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
-@Path("")
+@Path("/api")
 @RequestScoped
 public class LeadDispatcher {
 
     @GET
     @Path("/leads/{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary="Get Lead by ID")
+    @APIResponse(description = "Successfully Retrieved", responseCode = "200")
     public Response getLeadById(@PathParam("id") String id) {
         try {
             LeadController leadController = (LeadController) BaseController.getInstance("lead");

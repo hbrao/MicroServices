@@ -62,6 +62,12 @@
             <artifactId>helidon-microprofile-rest-client</artifactId>
         </dependency>
 
+        <!-- Helidon MP OpenAPI support -->
+        <dependency>
+            <groupId>io.helidon.microprofile.openapi</groupId>
+            <artifactId>helidon-microprofile-openapi</artifactId>
+        </dependency>
+
         <!-- Other -->
         <dependency>
             <groupId>org.projectlombok</groupId>

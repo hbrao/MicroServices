@@ -1,0 +1,30 @@
+openapi: "3.0.3"
+info:
+  title: "MicroServices API"
+  description: "MicroServices API"
+  version: "1.0.0"
+servers:
+  - url: "http://localhost:8081"
+paths:
+  /api/leads/{id}:
+    get:
+      summary: "GET api/leads/{id}"
+      operationId: "getLeadById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Response"
+components:
+  schemas:
+    Response:
+      type: "object"
+      properties: { }
