@@ -10,7 +10,7 @@ import java.io.InputStream;
 
 @Path("/{path:.*}")
 @ApplicationScoped
-public class StaticContentResource {
+public class SwaggerUI {
 
     @GET
     @Produces({"text/html", "application/javascript", "text/css", "image/png", "image/jpeg", "image/gif"})
@@ -19,7 +19,7 @@ public class StaticContentResource {
             path = "index.html"; // default to index.html if no file is specified
         }
 
-        InputStream fileStream = StaticContentResource.class.getClassLoader()
+        InputStream fileStream = SwaggerUI.class.getClassLoader()
                 .getResourceAsStream("META-INF/resources/" + path);
 
         if (fileStream == null) {

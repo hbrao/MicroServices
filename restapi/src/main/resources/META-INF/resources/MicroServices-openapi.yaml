@@ -6,9 +6,9 @@ info:
 servers:
   - url: "http://localhost:8081"
 paths:
-  /api/leads/{id}:
+  /api/crm/leads/{id}:
     get:
-      summary: "GET api/leads/{id}"
+      summary: "GET api/crm/leads/{id}"
       operationId: "getLeadById"
       parameters:
         - name: "id"
@@ -23,8 +23,43 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Response"
+  /api/crm/leads:
+    post:
+      summary: "POST api/crm/leads"
+      operationId: "createLead"
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              $ref: "#/components/schemas/LeadDTO"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Response"
 components:
   schemas:
     Response:
       type: "object"
       properties: { }
+    Campaign:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        location:
+          type: "string"
+    LeadDTO:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        name:
+          type: "string"
+        sourceCampaigns:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Campaign"

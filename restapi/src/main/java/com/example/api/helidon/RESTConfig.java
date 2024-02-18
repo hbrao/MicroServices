@@ -1,8 +1,8 @@
-package com.example.api.app;
+package com.example.api.helidon;
 
 import com.example.api.dispatcher.LeadDispatcher;
 
-import com.example.api.dispatcher.StaticContentResource;
+import com.example.api.dispatcher.SwaggerUI;
 import javax.annotation.Priority;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Initialized;
@@ -13,13 +13,12 @@ import javax.ws.rs.core.Application;
 import java.util.Set;
 
 @ApplicationScoped
-@ApplicationPath("/")
-public class HelidonApplication extends Application {
-
+@ApplicationPath("/api")
+public class RESTConfig extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {
-        return Set.of(LeadDispatcher.class, StaticContentResource.class);
+        return Set.of(LeadDispatcher.class, SwaggerUI.class);
     }
 
     public void init(@Observes @Priority(Interceptor.Priority.APPLICATION) @Initialized(ApplicationScoped.class) Object init) {
