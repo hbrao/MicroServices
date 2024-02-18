@@ -19,15 +19,6 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 @RequestScoped
 public class LeadDispatcher {
 
-    @GET
-    @Path("/leads/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Operation(summary="Get Lead by ID")
-    @APIResponse(description = "Successfully Retrieved", responseCode = "200")
-    public Response getLeadById(@PathParam("id") String id) throws NotImplementedException {
-        return ControllerFactory.getLeadController().getLeads(id);
-    }
-
     @POST
     @Path(("/leads"))
     @Produces(MediaType.APPLICATION_JSON)
@@ -36,5 +27,14 @@ public class LeadDispatcher {
     @APIResponse(description = "Successfully created new lead", responseCode = "201")
     public Response createLead(LeadDTO leadDTO) throws NotImplementedException {
         return ControllerFactory.getLeadController().createLead(leadDTO);
+    }
+
+    @GET
+    @Path("/leads/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary="Get Lead by ID")
+    @APIResponse(description = "Successfully Retrieved", responseCode = "200")
+    public Response getLeadById(@PathParam("id") String id) throws NotImplementedException {
+        return ControllerFactory.getLeadController().getLeads(id);
     }
 }

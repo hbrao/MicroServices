@@ -20,7 +20,7 @@ public class LeadServiceClientImpl implements LeadServiceClient {
     private synchronized  void createRestApiClient() {
         if( restClientServiceClient == null ) {
             restClientServiceClient = RestClientBuilder.newBuilder()
-                                         .baseUri(URI.create("http://localhost:8081"))
+                                         .baseUri(URI.create("http://localhost:8081/api"))
                                          .connectTimeout(5, TimeUnit.SECONDS)
                                          .readTimeout(1, TimeUnit.MINUTES)
                                          .build(LeadServiceClient.class);
@@ -35,10 +35,5 @@ public class LeadServiceClientImpl implements LeadServiceClient {
     @Override
     public Response createLead(JsonObject leadRequest) {
         return getRestApiClient().createLead(leadRequest);
-    }
-
-    @Override
-    public JsonObject getHistory(String object, String objectId) {
-        return getRestApiClient().getHistory(object, objectId);
     }
 }
