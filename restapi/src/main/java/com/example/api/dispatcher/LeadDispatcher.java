@@ -11,7 +11,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.*;
 
-import jdk.jshell.spi.ExecutionControl.NotImplementedException;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
@@ -25,7 +24,7 @@ public class LeadDispatcher {
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "Create new lead")
     @APIResponse(description = "Successfully created new lead", responseCode = "201")
-    public Response createLead(LeadDTO leadDTO) throws NotImplementedException {
+    public Response createLead(LeadDTO leadDTO) {
         return ControllerFactory.getLeadController().createLead(leadDTO);
     }
 
@@ -34,7 +33,7 @@ public class LeadDispatcher {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary="Get Lead by ID")
     @APIResponse(description = "Successfully Retrieved", responseCode = "200")
-    public Response getLeadById(@PathParam("id") String id) throws NotImplementedException {
-        return ControllerFactory.getLeadController().getLeads(id);
+    public Response getLeadById(@PathParam("id") String id) {
+        return ControllerFactory.getLeadController().getLeadById(id);
     }
 }

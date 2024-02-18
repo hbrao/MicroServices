@@ -13,7 +13,7 @@ public class LeadController {
         this.leadService = leadService;
     }
 
-    public Response getLeads(String leadId) {
+    public Response getLeadById(String leadId) {
         LeadDTO lead = leadService.getLeadById(leadId);
         return Response.ok().entity(lead).build();
     }

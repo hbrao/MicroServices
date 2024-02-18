@@ -3,6 +3,7 @@ package com.example.api.helidon;
 import com.example.api.dispatcher.LeadDispatcher;
 
 import com.example.api.dispatcher.SwaggerUI;
+import com.example.api.exception.NotFoundExceptionManager;
 import javax.annotation.Priority;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Initialized;
@@ -18,7 +19,7 @@ public class RESTConfig extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {
-        return Set.of(LeadDispatcher.class, SwaggerUI.class);
+        return Set.of(LeadDispatcher.class, SwaggerUI.class, NotFoundExceptionManager.class);
     }
 
     public void init(@Observes @Priority(Interceptor.Priority.APPLICATION) @Initialized(ApplicationScoped.class) Object init) {

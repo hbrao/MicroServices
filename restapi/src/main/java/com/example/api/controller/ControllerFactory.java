@@ -5,7 +5,7 @@ import jdk.jshell.spi.ExecutionControl.NotImplementedException;
 
 public class ControllerFactory {
 
-    public static LeadController getLeadController() throws NotImplementedException {
+    public static LeadController getLeadController() {
        return new LeadController(new LeadService());
     }
 }
