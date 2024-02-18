@@ -1,8 +1,10 @@
 package com.example.api.dispatcher;
 
+import com.example.api.components.ObjectQueryParams;
 import com.example.api.components.LeadDTO;
 import com.example.api.controller.ControllerFactory;
 import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -33,7 +35,7 @@ public class LeadDispatcher {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary="Get Lead by ID")
     @APIResponse(description = "Successfully Retrieved", responseCode = "200")
-    public Response getLeadById(@PathParam("id") String id) {
+    public Response getLeadById(@PathParam("id") String id, @BeanParam ObjectQueryParams objectQueryParams) {
         return ControllerFactory.getLeadController().getLeadById(id);
     }
 }
