@@ -18,7 +18,7 @@
 
         <package>com.oracle.osc.dispatcher</package>
         <libs.classpath.prefix>libs</libs.classpath.prefix>
-        <mainClass>com.example.api.Main</mainClass>
+        <mainClass>com.examples.api.Main</mainClass>
 
         <version.app.plugin.dependency>3.1.2</version.app.plugin.dependency>
         <version.app.plugin.jar>3.0.2</version.app.plugin.jar>
@@ -113,6 +113,12 @@
             <version>${version.lib.app.junit5}</version>
             <scope>test</scope>
         </dependency>
+      <dependency>
+        <groupId>org.jetbrains</groupId>
+        <artifactId>annotations</artifactId>
+        <version>16.0.3</version>
+        <scope>compile</scope>
+      </dependency>
     </dependencies>
     <build>
         <plugins>

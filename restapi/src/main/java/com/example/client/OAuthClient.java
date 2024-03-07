@@ -12,7 +12,7 @@ public interface OAuthClient {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/token")
     JsonObject getToken(
-            @NotNull @HeaderParam("Authorization") String authorization,
+            @org.jetbrains.annotations.NotNull @HeaderParam("Authorization") String authorization,
             @NotNull String body
     );
 }
